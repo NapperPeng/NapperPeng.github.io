@@ -1,0 +1,23 @@
+---
+import { getEntry, render } from "astro:content";
+import siteConfig from "@config";
+import AboutProfileCard from "../components/AboutProfileCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const homePage = await getEntry("page", "home");
+
+if (!homePage) {
+  throw new Error("The Home page content entry is missing.");
+}
+
+const { Content } = await render(homePage);
+---
+
+<BaseLayout pageTitle={homePage.data.title} description={siteConfig.authorBio}>
+  <AboutProfileCard />
+  <article
+    class="markdown-content rounded-lg bg-white p-5 shadow-sm sm:p-8 lg:p-12 dark:bg-gray-900"
+  >
+    <Content />
+  </article>
+</BaseLayout>

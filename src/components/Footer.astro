@@ -1,0 +1,19 @@
+---
+import siteConfig from "@config";
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="mx-4 my-8 max-w-5xl text-center sm:mx-6 lg:mx-auto">
+  <p class="text-sm text-gray-600 dark:text-gray-400">
+    © {currentYear}&nbsp;
+    <a
+      href={siteConfig.authorUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-semibold text-gray-800 hover:text-blue-500 hover:underline dark:text-gray-200 dark:hover:text-blue-400"
+    >
+      {siteConfig.author}
+    </a>
+    . All rights reserved.
+  </p>
+</footer>
