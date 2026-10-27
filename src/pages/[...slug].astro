@@ -17,10 +17,12 @@ const { page } = Astro.props;
 const { Content } = await render(page);
 ---
 
-<BaseLayout pageTitle={page.data.title} description={page.data.description}>
-  <article
-    class="markdown-content rounded-lg bg-white p-5 shadow-sm sm:p-8 lg:p-12 dark:bg-gray-900"
-  >
+<BaseLayout
+  pageTitle={page.data.title}
+  description={page.data.description}
+  readingLayout
+>
+  <article class="markdown-content">
     <Content />
   </article>
 </BaseLayout>

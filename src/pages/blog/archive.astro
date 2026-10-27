@@ -18,39 +18,37 @@ const archiveEntries = (
 ---
 
 <BaseLayout pageTitle="Archive" description="Browse articles by timestamp">
-  <div
-    class="rounded-xl bg-white px-4 py-6 shadow-sm sm:px-8 sm:py-8 lg:px-10 dark:bg-gray-900"
-  >
+  <div class="timeline">
     {
       archiveEntries.length > 0 ? (
         <div class="flex flex-col gap-7 sm:gap-8">
           {archiveEntries.map(([year, yearPosts]) => (
             <section
               aria-labelledby={`archive-year-${year}`}
-              class="relative before:absolute before:top-5.25 before:bottom-0 before:left-20 before:border-l before:border-gray-300 before:content-[''] sm:before:top-5.75 dark:before:border-gray-700"
+              class="timeline-year"
             >
               <h2
                 id={`archive-year-${year}`}
-                class="relative grid grid-cols-[3.5rem_3rem_minmax(0,1fr)] items-center text-xl font-bold tracking-tight text-gray-800 sm:text-2xl dark:text-gray-100"
+                class="timeline-row relative items-center text-xl font-bold tracking-tight text-gray-800 sm:text-2xl dark:text-gray-100"
               >
                 <span>{year}</span>
                 <span class="flex justify-center">
-                  <span class="relative z-10 h-3.5 w-3.5 rounded-full border-2 border-blue-500 bg-white dark:border-blue-400 dark:bg-gray-900" />
+                  <span class="timeline-node relative z-10 h-3.5 w-3.5 rounded-full border-2 border-blue-500 dark:border-blue-400" />
                 </span>
-                <span class="text-xs font-normal tracking-normal text-gray-500 sm:text-sm dark:text-gray-400">
+                <span class="text-xs font-normal tracking-normal text-gray-600 sm:text-sm dark:text-gray-400">
                   {yearPosts.length} {yearPosts.length === 1 ? "post" : "posts"}
                 </span>
               </h2>
               <ul class="relative mt-2 space-y-0.5">
                 {yearPosts.map((post) => (
-                  <li class="group relative grid grid-cols-[3.5rem_3rem_minmax(0,1fr)] items-center">
+                  <li class="group timeline-row relative items-center">
                     <a
                       href={`/blog/${post.id}`}
-                      class="col-span-3 grid grid-cols-[3.5rem_3rem_minmax(0,1fr)] items-center rounded-md py-2 transition-colors duration-200 hover:bg-blue-50/70 focus-visible:bg-blue-50/70 focus-visible:outline-none dark:hover:bg-gray-800/70 dark:focus-visible:bg-gray-800/70"
+                      class="timeline-row items-center rounded-md py-2 transition-colors duration-200 hover:bg-blue-50/70 focus-visible:bg-blue-50/70 dark:hover:bg-gray-800/70 dark:focus-visible:bg-gray-800/70"
                     >
                       <time
                         datetime={formatISODate(post.data.pubDate)}
-                        class="pr-1 text-right text-xs font-medium text-gray-500 sm:text-sm dark:text-gray-400"
+                        class="pr-1 text-right text-xs font-medium text-gray-600 sm:text-sm dark:text-gray-400"
                       >
                         {formatMonthDay(post.data.pubDate)}
                       </time>
@@ -71,7 +69,7 @@ const archiveEntries = (
         </div>
       ) : (
         <div class="py-8 text-center">
-          <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+          <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
             No archives found.
           </p>
         </div>

@@ -11,6 +11,8 @@ import { satteri } from "@astrojs/markdown-satteri";
 
 // https://astro.build/config
 export default defineConfig({
+  // A production build must not overwrite a running dev server's content store.
+  cacheDir: "./node_modules/.astro",
   markdown: {
     processor: satteri({
       hastPlugins: [

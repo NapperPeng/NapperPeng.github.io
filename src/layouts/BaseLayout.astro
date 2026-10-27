@@ -12,12 +12,14 @@ interface Props {
   pageTitle: string;
   description?: string;
   readingProgress?: boolean;
+  readingLayout?: boolean;
 }
 
 const {
   pageTitle,
   description,
   readingProgress = false,
+  readingLayout = false,
 } = Astro.props;
 const metaDescription = description ?? siteConfig.description;
 const lang = siteConfig.lang ?? "en";
@@ -27,6 +29,13 @@ const lang = siteConfig.lang ?? "en";
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    <link
+      rel="preload"
+      href="/fonts/Outfit-Latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,13 +70,14 @@ const lang = siteConfig.lang ?? "en";
   <body>
     <Header />
     <main
-      class="mx-4 my-8 max-w-5xl sm:mx-6 lg:mx-auto"
+      class:list={[
+        "site-container page-content",
+        { "reading-layout": readingLayout },
+      ]}
       data-page-transition
       data-reading-progress={readingProgress ? "" : undefined}
     >
-      <header
-        class="mb-8 rounded-lg bg-white p-6 shadow-sm sm:p-8 lg:p-10 dark:bg-gray-900"
-      >
+      <header class="page-heading">
         {
           Astro.slots.has("page-header-prefix") && (
             <slot name="page-header-prefix" />

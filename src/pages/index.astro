@@ -15,9 +15,7 @@ const { Content } = await render(homePage);
 
 <BaseLayout pageTitle={homePage.data.title} description={siteConfig.authorBio}>
   <AboutProfileCard />
-  <article
-    class="markdown-content rounded-lg bg-white p-5 shadow-sm sm:p-8 lg:p-12 dark:bg-gray-900"
-  >
+  <article class="markdown-content reading-content">
     <Content />
   </article>
 </BaseLayout>
