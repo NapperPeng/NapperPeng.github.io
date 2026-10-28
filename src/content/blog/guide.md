@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
-description: "A comprehensive guide on configuring your site, managing pages, publishing posts, and executing CLI commands in Mare Blog."
+description: "A comprehensive guide on configuring your site, managing pages, publishing posts, and executing CLI commands in NapperPeng Blog."
 pubDate: 2026-08-30
 featured: false
 tags: [astro, blogging]
@@ -40,7 +40,7 @@ export default defineConfig({
   authorUrl: "https://github.com/NapperPeng",
   authorBio: "A passionate developer.",
   authorDetails:
-    "A student with basic full-stack development skills who enjoys playing Minecraft.",
+    "Your detailed introduction goes here.",
   authorLocation: "China",
   avatar: "/avatar.png",
   authorLinks: [
@@ -50,7 +50,7 @@ export default defineConfig({
       icon: "lucide:github",
     },
   ],
-  url: "https://mare-blog.pages.dev",
+  url: "https://napperpeng.github.io",
   postsPerPage: 6,
   nav: [
     { name: "Home", href: "/", icon: "lucide:home" },

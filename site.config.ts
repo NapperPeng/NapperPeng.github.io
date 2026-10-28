@@ -67,7 +67,7 @@ export default defineConfig({
       icon: "lucide:github",
     },
   ],
-  url: "https://mare-blog.pages.dev",
+  url: "https://napperpeng.github.io",
   postsPerPage: 6,
   nav: [
     { name: "Home", href: "/", icon: "lucide:home" },

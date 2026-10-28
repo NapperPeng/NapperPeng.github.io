@@ -125,6 +125,7 @@ export default defineConfig({
     ],
   },
   site: siteConfig.url,
+  base: "/",
   integrations: [
     sitemap(),
     mdx(),
