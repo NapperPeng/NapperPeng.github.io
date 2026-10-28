@@ -5,15 +5,16 @@ import { getBlogPosts } from "../../../utils/content";
 const tags = getTagSummaries(await getBlogPosts());
 ---
 
-<BaseLayout pageTitle="Tags" description="Browse articles by topic.">
+<BaseLayout pageTitle="Tags" description="Browse articles by topic." centeredHeading>
   {
     tags.length > 0 ? (
-      <ul class="flex flex-wrap gap-x-8 gap-y-5">
+      <ul class="flex flex-wrap justify-center gap-x-8 gap-y-5 text-center">
         {tags.map((tag) => (
           <li>
             <a
+              data-cursor="tag"
               href={getTagHref(tag.name)}
-              class="text-link inline-flex items-baseline gap-2"
+              class="plain-link inline-flex items-baseline gap-2"
             >
               <span>{tag.name}</span>
               <span class="text-xs text-gray-600 dark:text-gray-400">
@@ -24,7 +25,7 @@ const tags = getTagSummaries(await getBlogPosts());
         ))}
       </ul>
     ) : (
-      <section>
+      <section class="text-center">
         <p class="text-sm text-gray-500 dark:text-gray-400">
           No tags have been added yet.
         </p>

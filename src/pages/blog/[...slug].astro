@@ -44,8 +44,9 @@ const { Content } = await render(post);
           {post.data.tags.map((tag: string) => (
             <li>
               <a
+                data-cursor="tag"
                 href={getTagHref(tag)}
-                class="text-link inline-flex items-center gap-1 text-sm"
+                class="plain-link inline-flex items-center gap-1 text-sm"
               >
                 <Icon
                   name="lucide:tag"

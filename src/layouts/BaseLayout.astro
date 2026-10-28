@@ -7,12 +7,14 @@ import GlobalTooltip from "../components/GlobalTooltip.astro";
 import BackToTop from "../components/BackToTop.astro";
 import PageTransition from "../components/PageTransition.astro";
 import LoadingBar from "../components/LoadingBar.astro";
+import CustomCursor from "../components/CustomCursor.astro";
 
 interface Props {
   pageTitle: string;
   description?: string;
   readingProgress?: boolean;
   readingLayout?: boolean;
+  centeredHeading?: boolean;
 }
 
 const {
@@ -20,6 +22,7 @@ const {
   description,
   readingProgress = false,
   readingLayout = false,
+  centeredHeading = false,
 } = Astro.props;
 const metaDescription = description ?? siteConfig.description;
 const lang = siteConfig.lang ?? "en";
@@ -77,7 +80,7 @@ const lang = siteConfig.lang ?? "en";
       data-page-transition
       data-reading-progress={readingProgress ? "" : undefined}
     >
-      <header class="page-heading">
+      <header class:list={["page-heading", { "text-center": centeredHeading }]}>
         {
           Astro.slots.has("page-header-prefix") && (
             <slot name="page-header-prefix" />
@@ -104,5 +107,6 @@ const lang = siteConfig.lang ?? "en";
     <BackToTop />
     <Footer />
     <GlobalTooltip />
+    <CustomCursor />
   </body>
 </html>

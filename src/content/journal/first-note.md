@@ -1,6 +1,10 @@
 ---
-title: "A place for small notes"
-pubDate: 2026-09-26
+title: "项目起步：让内容先有一个家"
+pubDate: 2026-10-26
 ---
 
-This is a sample journal entry. Replace it with a short note of your own, or remove it to start with an empty timeline.
+这个博客以 Astro 为基础，使用 Markdown 和 MDX 管理内容。首页介绍自己，Blog 存放较完整的文章，Journal 则记录开发过程中的小步进展。
+
+文章和日记是两个独立的内容集合：Archive 根据博客文章的发布日期自动生成时间目录；Journal 根据自己的内容文件生成时间轴，直接展示记录正文，不需要手动维护页面列表。
+
+先把内容组织、日期和页面入口建立起来，再逐步打磨视觉与交互。项目的方向是一个便于阅读、也能留下个人痕迹的博客。

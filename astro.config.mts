@@ -1,5 +1,7 @@
 // @ts-check
 import siteConfig from "./site.config";
+import { existsSync } from "node:fs";
+import { relative } from "node:path";
 
 import { defineConfig } from "astro/config";
 
@@ -11,7 +13,7 @@ import { satteri } from "@astrojs/markdown-satteri";
 
 // https://astro.build/config
 export default defineConfig({
-  // A production build must not overwrite a running dev server's content store.
+  // Build cache location; dev content storage remains in .astro.
   cacheDir: "./node_modules/.astro",
   markdown: {
     processor: satteri({
@@ -84,7 +86,43 @@ export default defineConfig({
     }),
   },
   vite: {
-    plugins: [tailwindcss()],
+    server: {
+      watch: {
+        // Windows native notifications have reported whole-tree unlink bursts
+        // while files still existed. Poll actual file state instead.
+        usePolling: process.platform === "win32",
+        interval: 300,
+        binaryInterval: 1000,
+        atomic: 500,
+        awaitWriteFinish: { stabilityThreshold: 300, pollInterval: 100 },
+      },
+    },
+    plugins: [
+      tailwindcss(),
+      {
+        name: "blog-watch-diagnostics",
+        apply: "serve",
+        configureServer(server) {
+          // Observe, don't suppress events: real deletes must still update content.
+          const report = (event: string, path: string) => {
+            if (!["add", "unlink", "unlinkDir"].includes(event)) return;
+            if (
+              !/[/\\]src[/\\]content[/\\]|astro\.config\.|tsconfig\.json$/.test(
+                path,
+              )
+            )
+              return;
+            server.config.logger.info(
+              `[blog-watch] ${event} ${relative(server.config.root, path)} exists=${existsSync(path)}`,
+            );
+          };
+          server.watcher.on("all", report);
+          server.watcher.on("error", (error) => {
+            server.config.logger.error(`[blog-watch] ${String(error)}`);
+          });
+        },
+      },
+    ],
   },
   site: siteConfig.url,
   integrations: [

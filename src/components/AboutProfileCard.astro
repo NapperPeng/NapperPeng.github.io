@@ -36,6 +36,7 @@ import { Icon } from "astro-icon/components";
         {
           siteConfig.authorLinks?.map((link) => (
             <a
+              data-cursor="link"
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"

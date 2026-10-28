@@ -1,0 +1,31 @@
+---
+import "../styles/interactions.css";
+---
+
+<div id="custom-cursor" aria-hidden="true">
+  <div class="cursor-point"></div>
+  <svg
+    class="cursor-bracket"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    shape-rendering="crispEdges"
+  >
+    <path class="cursor-outline" fill="currentColor"></path>
+  </svg>
+</div>
+
+<script>
+  import { installCursor } from "../scripts/cursor";
+  let dispose: (() => void) | undefined;
+  const setup = () => {
+    dispose?.();
+    dispose = installCursor();
+  };
+  document.addEventListener("astro:before-swap", () => {
+    dispose?.();
+    dispose = undefined;
+  });
+  document.addEventListener("astro:page-load", setup);
+  setup();
+</script>

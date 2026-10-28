@@ -57,7 +57,7 @@ export default defineConfig({
   authorUrl: "https://github.com/NapperPeng",
   authorBio: "A passionate developer.",
   authorDetails:
-    "A student with basic full-stack development skills who enjoys playing Minecraft.",
+    "慢拔？就会OUT！",
   authorLocation: "China",
   avatar: "/avatar.png",
   authorLinks: [

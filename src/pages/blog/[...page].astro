@@ -29,11 +29,16 @@ const pageLinks = Array.from(
 ---
 
 <BaseLayout
+  centeredHeading
   pageTitle={pageTitle}
   description="Browse all articles, notes, and guides."
 >
-  <section class="mb-10 flex flex-wrap gap-x-8 gap-y-3">
-    <a href="/blog/tags" class="text-link group inline-flex items-center gap-2">
+  <section class="mb-10 flex flex-wrap justify-center gap-x-8 gap-y-3">
+    <a
+      href="/blog/tags"
+      data-cursor="link"
+      class="plain-link group inline-flex items-center gap-2"
+    >
       <div class="shrink-0">
         <Icon name="lucide:tag" class="h-4 w-4" />
       </div>
@@ -43,8 +48,9 @@ const pageLinks = Array.from(
       </div>
     </a>
     <a
+      data-cursor="link"
       href="/blog/archive"
-      class="text-link group inline-flex items-center gap-2"
+      class="plain-link group inline-flex items-center gap-2"
     >
       <div class="shrink-0">
         <Icon name="lucide:archive" class="h-4 w-4" />
@@ -76,31 +82,31 @@ const pageLinks = Array.from(
   }
   <nav
     aria-label="Blog pagination"
-    class="mt-12 flex flex-wrap items-center gap-2 text-sm"
+    class="blog-pagination mt-12 flex flex-wrap items-center justify-center gap-2 text-sm"
   >
     {
       page.url.prev ? (
         <a
+          data-cursor="link"
           href={page.url.prev}
           data-tooltip="Previous page"
           aria-label="Previous page"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 transition-colors duration-200 hover:border-blue-600 hover:bg-blue-50 hover:text-blue-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:border-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-400"
+          class="pagination-link"
         >
           <Icon name="lucide:chevron-left" class="h-4 w-4" />
         </a>
       ) : (
         <span
           data-tooltip="No previous page"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 bg-gray-100 text-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-600"
+          class="pagination-disabled"
+          aria-disabled="true"
           aria-label="Previous page"
         >
           <Icon name="lucide:chevron-left" class="h-4 w-4" />
         </span>
       )
     }
-    <div
-      class="inline-flex rounded-lg border border-gray-200 dark:border-gray-700"
-    >
+    <div class="flex flex-wrap justify-center gap-2">
       {
         pageLinks.map((pageNumber) => {
           const href = pageNumber === 1 ? "/blog" : `/blog/${pageNumber}`;
@@ -108,13 +114,11 @@ const pageLinks = Array.from(
 
           return (
             <a
+              data-cursor="link"
               href={href}
               aria-current={isCurrent ? "page" : undefined}
-              class={`relative flex h-11 w-11 items-center justify-center border-r border-gray-200 text-sm transition-colors duration-200 first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700 ${
-                isCurrent
-                  ? "z-10 bg-blue-600 font-medium text-white"
-                  : "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400"
-              }`}
+              aria-label={`Page ${pageNumber}`}
+              class="pagination-link"
             >
               {pageNumber}
             </a>
@@ -125,10 +129,11 @@ const pageLinks = Array.from(
     {
       page.url.next ? (
         <a
+          data-cursor="link"
           href={page.url.next}
           data-tooltip="Next page"
           aria-label="Next page"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 transition-colors duration-200 hover:border-blue-600 hover:bg-blue-50 hover:text-blue-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:border-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-400"
+          class="pagination-link"
         >
           <Icon name="lucide:chevron-right" class="h-4 w-4" />
         </a>
@@ -136,7 +141,8 @@ const pageLinks = Array.from(
         <span
           data-tooltip="No next page"
           aria-label="Next page"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 bg-gray-100 text-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-600"
+          class="pagination-disabled"
+          aria-disabled="true"
         >
           <Icon name="lucide:chevron-right" class="h-4 w-4" />
         </span>

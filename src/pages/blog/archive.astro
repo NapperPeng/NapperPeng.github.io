@@ -41,8 +41,9 @@ const archiveEntries = (
               </h2>
               <ul class="relative mt-2 space-y-0.5">
                 {yearPosts.map((post) => (
-                  <li class="group timeline-row relative items-center">
+                  <li class="group relative">
                     <a
+                      data-cursor="row"
                       href={`/blog/${post.id}`}
                       class="timeline-row items-center rounded-md py-2 transition-colors duration-200 hover:bg-blue-50/70 focus-visible:bg-blue-50/70 dark:hover:bg-gray-800/70 dark:focus-visible:bg-gray-800/70"
                     >

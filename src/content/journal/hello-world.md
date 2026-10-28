@@ -1,7 +1,12 @@
 ---
-title: "Hello world!"
-pubDate: 2026-10-18
+title: "v2：从卡片界面走向开放式博客"
+pubDate: 2026-10-27
 ---
 
-> [!NOTE]
-> Contributions welcome! Please feel free to open an issue to help improve this project.
+v2 的视觉改造先从需求文档开始：确认方案后再实现，而不是边写边更换方向。目标是改善布局、字体、鼠标和按钮交互，让页面更适合连续阅读。
+
+第一步去掉主要区域的卡片外壳，用共享背景、留白和文字层级组织页面。导航主体紧凑居中，左右各保留一条细横线；滚动和切换明暗主题时保持透明，不再出现背景遮罩或毛玻璃。当前导航项只改变颜色，不添加下划线。
+
+字体最终选择 Outfit、MiSans 与 JetBrains Mono：分别承担英文界面、中文内容和代码阅读。字体文件自托管，保留回退字体与授权信息，正文阅读宽度和代码滚动能力继续保留。
+
+这一阶段保存为本地 v2.1 版本，提交备注为 `release: v2.1 open layout and custom typography`。当时尚未配置远程仓库，因此本地提交与标签不等于已经完成远程推送。

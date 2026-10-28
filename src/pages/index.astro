@@ -13,7 +13,11 @@ if (!homePage) {
 const { Content } = await render(homePage);
 ---
 
-<BaseLayout pageTitle={homePage.data.title} description={siteConfig.authorBio}>
+<BaseLayout
+  pageTitle={homePage.data.title}
+  description={siteConfig.authorBio}
+  centeredHeading
+>
   <AboutProfileCard />
   <article class="markdown-content reading-content">
     <Content />
